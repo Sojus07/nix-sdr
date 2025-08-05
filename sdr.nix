@@ -4,7 +4,7 @@ let
 in
 {
   services = {
-    sdrPlayApi.enable = true;      
+    sdrplayApi.enable = true;      
   };
   hardware = {
     hackrf.enable = true;
