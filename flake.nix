@@ -9,6 +9,7 @@
   in {
     packages.${system} = {
       gnss-sdr = import ./gnss-sdr.nix { inherit pkgs; };
+      satdump = import ./satdump.nix { inherit pkgs; };
     };
 
     nixosModules.default = import ./sdr.nix;

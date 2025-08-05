@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 let
-  gnss-sdr     = import ./gnss-sdr.nix     { inherit pkgs; };
+  gnss-sdr = import ./gnss-sdr.nix { inherit pkgs; };
+  satdump  = import ./satdump.nix  { inherit pkgs; }; 
 in
 {
   services = {
@@ -28,5 +29,6 @@ in
     soapyhackrf
 
     gnss-sdr
+    satdump
   ];
 }
