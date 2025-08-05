@@ -2,6 +2,8 @@
 let
   gnss-sdr = import ./gnss-sdr.nix { inherit pkgs; };
   satdump  = import ./satdump.nix  { inherit pkgs; }; 
+  qcsuper  = import ./qcsuper.nix  { inherit pkgs; };
+  gr-gsm   = import ./gr-gsm.nix   { inherit pkgs; };
 in
 {
   services = {
@@ -30,5 +32,7 @@ in
 
     gnss-sdr
     satdump
+    qcsuper
+    gr-gsm
   ];
 }
