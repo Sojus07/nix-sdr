@@ -8,8 +8,8 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     packages.${system} = {
-      gnss-sdr = import ./gnss-sdr.nix { inherit pkgs; };
-      satdump = import ./satdump.nix { inherit pkgs; };
+      gnss-sdr = pkgs.callPackage ./gnss-sdr.nix { };
+      satdump = pkgs.callPackage ./satdump.nix { };
     };
 
     nixosModules.default = import ./sdr.nix;

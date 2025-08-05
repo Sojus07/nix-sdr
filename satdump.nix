@@ -18,9 +18,9 @@ pkgs.stdenv.mkDerivation rec {
     curlFull.dev curlFull.out armadillo
     mbedtls nng opencl-headers hdf5
   ];
-
+  
   cmakeFlags = [
     "-DCMAKE_BUILD_TYPE=Release"
+    "-DCMAKE_INSTALL_LIBDIR=lib"
   ];
 }
-
