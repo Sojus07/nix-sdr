@@ -26,7 +26,6 @@ in
     rtl-sdr
     rtl_433
     soapyhackrf
-    sdrtrunk
 
     gnss-sdr
   ];
