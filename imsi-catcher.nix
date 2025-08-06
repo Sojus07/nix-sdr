@@ -1,4 +1,4 @@
-{ pkgs, lib }:
+{ pkgs }:
 pkgs.python3Packages.buildPythonApplication rec {
   pname = "imsi-catcher";
   version = "master";
