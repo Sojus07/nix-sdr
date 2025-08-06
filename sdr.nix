@@ -4,7 +4,7 @@ let
   satdump    = import ./satdump.nix    { inherit pkgs; }; 
   qcsuper    = import ./qcsuper.nix    { inherit pkgs; };
   gr-gsm     = import ./gr-gsm.nix     { inherit pkgs; };
-
+  imsi-catcher = import ./imsi-catcher.nix { inherit pkgs; };
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -33,10 +33,10 @@ in
     soapyhackrf
     wireshark
 
-
     gnss-sdr
     satdump
     qcsuper
     gr-gsm
+    imsi-catcher
   ];
 }
