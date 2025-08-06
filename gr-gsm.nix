@@ -14,6 +14,7 @@ pkgs.python3Packages.buildPythonApplication rec {
     cmake pkg-config swig doxygen
     python3Packages.pybind11 
     python3Packages.pygccxml
+    libsForQt5.wrapQtAppsHook
   ];
 
   propagatedBuildInputs = with pkgs; [
@@ -23,12 +24,9 @@ pkgs.python3Packages.buildPythonApplication rec {
     libosmocore 
     log4cpp gmpxx 
     mpir spdlog
-  ] 
-  ++ 
-  (with pkgs.python3Packages; [
-    numpy
-    scipy
-    setuptools
+    libsForQt5.qtbase
+  ] ++ (with pkgs.python3Packages; [
+    numpy scipy setuptools pyqt5 matplotlib
   ]);
 
   cmakeFlags = [
@@ -40,20 +38,17 @@ pkgs.python3Packages.buildPythonApplication rec {
   pyproject = false;
   build-system = [ pkgs.python3Packages.setuptools ];
 
-
   installPhase = ''
     runHook preInstall
 
     make install
-
     mkdir -p $out/bin
     cp -v $src/apps/gr* $out/bin/ || true
-
-    mkdir -p $out/share/gr-gsm/grc
-    cp -v $src/apps/*.grc $out/share/gr-gsm/grc/ || true
+    cp -v ${./raw/grgsm_livemon.py} $out/bin/grgsm_livemon 
+    chmod +x $out/bin/gr*
 
     runHook postInstall
   '';
-
+  QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.libsForQt5.qtbase.bin}/lib/qt-${pkgs.libsForQt5.qtbase.version}/plugins/platforms";
   pythonImportsCheck = [ "gnuradio" ];
 }

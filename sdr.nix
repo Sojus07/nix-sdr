@@ -1,11 +1,13 @@
 { config, pkgs, ... }:
 let
-  gnss-sdr = import ./gnss-sdr.nix { inherit pkgs; };
-  satdump  = import ./satdump.nix  { inherit pkgs; }; 
-  qcsuper  = import ./qcsuper.nix  { inherit pkgs; };
-  gr-gsm   = import ./gr-gsm.nix   { inherit pkgs; };
+  gnss-sdr   = import ./gnss-sdr.nix   { inherit pkgs; };
+  satdump    = import ./satdump.nix    { inherit pkgs; }; 
+  qcsuper    = import ./qcsuper.nix    { inherit pkgs; };
+  gr-gsm     = import ./gr-gsm.nix     { inherit pkgs; };
+  ltesniffer = import ./ltesniffer.nix { inherit pkgs; };  
 in
 {
+  nixpkgs.config.allowUnfree = true;
   services = {
     sdrplayApi.enable = true;      
   };
@@ -29,10 +31,13 @@ in
     rtl-sdr
     rtl_433
     soapyhackrf
+    wireshark
+
 
     gnss-sdr
     satdump
     qcsuper
     gr-gsm
+    ltesniffer
   ];
 }
