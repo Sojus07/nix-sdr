@@ -4,6 +4,7 @@ let
   satdump    = import ./satdump.nix    { inherit pkgs; }; 
   qcsuper    = import ./qcsuper.nix    { inherit pkgs; };
   gr-gsm     = import ./gr-gsm.nix     { inherit pkgs; };
+
 in
 {
   nixpkgs.config.allowUnfree = true;

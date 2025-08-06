@@ -53,6 +53,7 @@ pkgs.python3Packages.buildPythonApplication rec {
 
     make install
     mkdir -p $out/bin
+    rm -v $src/apps/*.grc || true
     cp -v $src/apps/gr* $out/bin/ || true
     cp -v ${./raw/grgsm_livemon.py} $out/bin/grgsm_livemon 
     chmod +x $out/bin/gr*

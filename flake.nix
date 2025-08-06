@@ -12,6 +12,7 @@
       satdump    = pkgs.callPackage ./satdump.nix    { };
       qcsuper    = pkgs.callPackage ./qcsuper.nix    { };
       gr-gsm     = pkgs.callPackage ./gr-gsm.nix     { };
+      imsi-catcher = pkgs.callPackage ./imsi-catcher.nix { };
     };
 
     nixosModules.default = import ./sdr.nix;
