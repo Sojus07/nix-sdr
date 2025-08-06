@@ -14,8 +14,9 @@ pkgs.python3Packages.buildPythonApplication rec {
     cmake pkg-config swig doxygen
     python3Packages.pybind11 
     python3Packages.pygccxml
-    libsForQt5.wrapQtAppsHook
+    qt5.wrapQtAppsHook
   ];
+  
 
   propagatedBuildInputs = with pkgs; [
     gnuradio gnuradioPackages.osmosdr 
@@ -49,6 +50,6 @@ pkgs.python3Packages.buildPythonApplication rec {
 
     runHook postInstall
   '';
-  QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.libsForQt5.qtbase.bin}/lib/qt-${pkgs.libsForQt5.qtbase.version}/plugins/platforms";
+  dontWrapQtApps = false;
   pythonImportsCheck = [ "gnuradio" ];
 }

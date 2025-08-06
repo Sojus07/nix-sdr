@@ -7,6 +7,7 @@ let
 in
 {
   nixpkgs.config.allowUnfree = true;
+  environment.variables.QT_QPA_PLATFORM_PLUGIN_PATH="${qt5.qtbase.bin}/lib/qt-${qt5.qtbase.version}/plugins/platforms";
   services = {
     sdrplayApi.enable = true;      
   };
