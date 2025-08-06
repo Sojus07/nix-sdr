@@ -14,9 +14,8 @@ pkgs.python3Packages.buildPythonApplication rec {
     cmake pkg-config swig doxygen
     python3Packages.pybind11 
     python3Packages.pygccxml
-    qt5.wrapQtAppsHook
+    libsForQt5.qt5.wrapQtAppsHook
   ];
-  
 
   propagatedBuildInputs = with pkgs; [
     gnuradio gnuradioPackages.osmosdr 
@@ -25,9 +24,19 @@ pkgs.python3Packages.buildPythonApplication rec {
     libosmocore 
     log4cpp gmpxx 
     mpir spdlog
-    libsForQt5.qtbase
-  ] ++ (with pkgs.python3Packages; [
-    numpy scipy setuptools pyqt5 matplotlib
+    libsForQt5.qt5.qtbase
+    libsForQt5.qt5.qtx11extras
+    libsForQt5.qt5.qtwayland
+    xorg.libxcb
+    xorg.libX11
+    xorg.libXext
+  ]
+  ++ (with pkgs.python3Packages; [
+    numpy
+    scipy
+    setuptools
+    pyqt5
+    matplotlib
   ]);
 
   cmakeFlags = [
@@ -50,6 +59,11 @@ pkgs.python3Packages.buildPythonApplication rec {
 
     runHook postInstall
   '';
-  dontWrapQtApps = false;
+
+  postFixup = ''
+    wrapQtApp $out/bin/grgsm_livemon
+  '';
+
   pythonImportsCheck = [ "gnuradio" ];
 }
+
