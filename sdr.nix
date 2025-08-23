@@ -32,6 +32,7 @@ in
     rtl_433
     soapyhackrf
     wireshark
+    inspectrum
 
     gnss-sdr
     satdump
